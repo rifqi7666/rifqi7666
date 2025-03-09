@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipbook Ulang Tahun</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            overflow: hidden;
+            position: relative;
+        }
+        .book {
+            width: 500px;
+            height: 350px;
+            position: relative;
+            perspective: 1500px;
+        }
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            transform-origin: left;
+            transition: transform 1s;
+        }
+        .left-text {
+            width: 45%;
+            text-align: left;
+            font-size: 16px;
+            color: #d63384;
+        }
+        .right-image img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .page:nth-child(odd) {
+            background: #ffd6e0;
+        }
+        .page:nth-child(even) {
+            background: #ffb3c6;
+        }
+        .page { transform: rotateY(0deg); }
+
+        /* Animasi Love */
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: float 4s infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-100px) scale(1.2); opacity: 0.5; }
+            100% { transform: translateY(-200px) scale(0.8); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div class="page" onclick="flipPage(this)">
+            <div class="left-text">Yang terakhir semoga kamu selalu di beri kesehatan jasmani dan rohani. LOVE UUU EBEBBBB</div>
+            <div class="right-image"><img src="isna1.jpg" alt="Halaman 1"></div>
+        </div>
+        <div class="page" onclick="flipPage(this)">
+            <div class="left-text">Terima kasih telah menjadi someone to talk anjay.</div>
+            <div class="right-image"><img src="isna2.jpg" alt="Halaman 2"></div>
+        </div>
+        <div class="page" onclick="flipPage(this)">
+            <div class="left-text">Jangan sering sering ngambek gajelas ke aku, mikir wes gede.</div>
+            <div class="right-image"><img src="isna3.jpg" alt="Halaman 3"></div>
+        </div>
+        <div class="page" onclick="flipPage(this)">
+            <div class="left-text">Semoga segala impianmu menjadi kenyataan dan tidak terlewatkan satupun.</div>
+            <div class="right-image"><img src="isna4.jpg" alt="Halaman 4"></div>
+        </div>
+        <div class="page" onclick="flipPage(this)">
+            <div class="left-text">Selamat ulang tahun Ebeb! Semoga di umurmu yang sekarang kamu memberi kebahagiaan untuk orang sekitarmu.</div>
+            <div class="right-image"><img src="isna5.jpg" alt="Halaman 5"></div>
+        </div>
+        <div class="page" onclick="flipPage(this)" style="background: #ff69b4; color: white; font-size: 28px; font-weight: bold;">
+            HAPPY BIRTHDAY SAYANGG 💖
+        </div>
+    </div>
+    
+    <audio autoplay loop>
+        <source src="your-music.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        function flipPage(page) {
+            if (page.style.transform === "rotateY(180deg)") {
+                page.style.transform = "rotateY(0deg)";
+            } else {
+                page.style.transform = "rotateY(180deg)";
+            }
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = Math.random() * window.innerHeight + "px";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+            }
+        }
+        setInterval(createHearts, 1000);
+    </script>
+</body>
+</html>
